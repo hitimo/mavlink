@@ -198,5 +198,48 @@
               <field type="float" name="pwr_brd_servo_4_amp">Power board servo1 current sensor</field>
               <field type="float" name="pwr_brd_aux_amp">Power board aux current sensor</field>
            </message>
+           <message id="213" name="GNSS_RAW_OBSERVATION">
+                <description>Raw GNSS observations as returned form ublox LEA-M8T. </description>
+                <field type="uint64_t" name="time_usec">Receiver sampling time (GPST)</field>
+                <field type="uint8_t" name="satellite_id">Satellite number. Unique over all systems.</field>
+                <field type="uint8_t" name="prn_id">PRN / slot ID of the satellite. Unique within a system.</field>
+                <field type="uint8_t" name="gnss_id">GNSS System ID.</field>
+                <field type="uint8_t" name="snr_1">Signal strength 1 (0.25dBHz).</field>
+                <field type="uint8_t" name="snr_2">Signal strength 2 (0.25dBHz).</field>
+                <field type="uint8_t" name="snr_3">Signal strength 3 (0.25dBHz).</field>
+                <field type="uint8_t" name="lli_1">Loss of lock indicator 1.</field>
+                <field type="uint8_t" name="lli_2">Loss of lock indicator 2.</field>
+                <field type="uint8_t" name="lli_3">Loss of lock indicator 3.</field>
+                <field type="uint8_t" name="code_1">Code indicator 1.</field>
+                <field type="uint8_t" name="code_2">Code indicator 2.</field>
+                <field type="uint8_t" name="code_3">Code indicator 3.</field>
+                <field type="float" name="l_1">Carrier-phase 1 [cycle].</field>
+                <field type="float" name="l_2">Carrier-phase 2 [cycle].</field>
+                <field type="float" name="l_3">Carrier-phase 3 [cycle].</field>
+                <field type="float" name="p_1">Pseudorange 1 [m].</field>
+                <field type="float" name="p_2">Pseudorange 2 [m].</field>
+                <field type="float" name="p_3">Pseudorange 3 [m].</field>
+                <field type="float" name="d_1">Doppler Frequency 1 [m].</field>
+                <field type="float" name="d_2">Doppler Frequency 2 [m].</field>
+                <field type="float" name="d_3">Doppler Frequency 3 [m].</field>
+                <field type="float" name="pseudorange_stdev_1">Pseudorange standard deviation 1 [m].</field>
+                <field type="float" name="pseudorange_stdev_2">Pseudorange standard deviation 2 [m].</field>
+                <field type="float" name="pseudorange_stdev_3">Pseudorange standard deviation 3 [m].</field>
+                <field type="float" name="carrier_phase_stdev_1">Carrier phase standard deviation 1 [cycles].</field>
+                <field type="float" name="carrier_phase_stdev_2">Carrier phase standard deviation 2 [cycles].</field>
+                <field type="float" name="carrier_phase_stdev_3">Carrier phase standard deviation 3 [cycles].</field>
+                <field type="float" name="doppler_stdev_1">Doppler standard deviation 1 [Hz].</field>
+                <field type="float" name="doppler_stdev_2">Doppler standard deviation 2 [Hz].</field>
+                <field type="float" name="doppler_stdev_3">Doppler standard deviation 3 [Hz].</field>
+           </message>
      </messages>
 </mavlink>
+
+
+float64[3] L   # carrier-phase [cycle]
+float64[3] P   # pseudorange [m]
+float32[3] D   # doppler frequency [Hz]
+# Estimated standard deviations as reported by the receiver. 0.0 for invalid or unknown.
+float32[3] pseudorange_stdev   # [m]
+float32[3] carrier_phase_stdev # [cycles]
+float32[3] doppler_stdev       # [Hz]
